@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { FirebaseService } from './services/firebase.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListingsComponent } from './components/listings/listings.component';
@@ -52,7 +53,7 @@ AppModule = __decorate([
             AngularFireModule.initializeApp(firebaseConfig),
             RouterModule.forRoot(appRoutes)
         ],
-        providers: [],
+        providers: [FirebaseService],
         bootstrap: [AppComponent]
     })
 ], AppModule);
