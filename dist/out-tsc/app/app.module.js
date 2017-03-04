@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListingsComponent } from './components/listings/listings.component';
@@ -48,6 +49,7 @@ AppModule = __decorate([
             BrowserModule,
             FormsModule,
             HttpModule,
+            AngularFireModule.initializeApp(firebaseConfig),
             RouterModule.forRoot(appRoutes)
         ],
         providers: [],
