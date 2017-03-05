@@ -9,7 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { FirebaseService } from './services/firebase.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -24,6 +24,10 @@ export var firebaseConfig = {
     databaseURL: "https://iklanproperti-e4ea0.firebaseio.com",
     storageBucket: "iklanproperti-e4ea0.appspot.com",
     messagingSenderId: "252503479977"
+};
+var firebaseAuthConfig = {
+    provider: AuthProviders.Google,
+    method: AuthMethods.Popup
 };
 var appRoutes = [
     { path: '', component: HomeComponent },

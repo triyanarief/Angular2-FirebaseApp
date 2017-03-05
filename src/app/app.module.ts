@@ -23,6 +23,11 @@ export const firebaseConfig = {
   messagingSenderId: "252503479977"
 };
 
+const firebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Popup
+};
+
 const appRoutes: Routes = [
   {path:'', component:HomeComponent},
   {path: 'listings', component:ListingsComponent},
