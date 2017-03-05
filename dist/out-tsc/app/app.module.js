@@ -32,6 +32,7 @@ var firebaseAuthConfig = {
 var appRoutes = [
     { path: '', component: HomeComponent },
     { path: 'listings', component: ListingsComponent },
+    { path: 'listing/:id', component: ListingComponent },
     { path: 'add-listing', component: AddListingComponent }
 ];
 var AppModule = (function () {
