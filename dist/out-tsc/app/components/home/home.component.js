@@ -8,10 +8,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { AngularFire } from 'angularfire2';
+import { FlashMessagesService } from 'angular2-flash-messages';
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(af, flashMessage) {
+        this.af = af;
+        this.flashMessage = flashMessage;
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.login = function () {
+        this.af.auth.login();
     };
     return HomeComponent;
 }());
@@ -21,7 +28,8 @@ HomeComponent = __decorate([
         templateUrl: './home.component.html',
         styleUrls: ['./home.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [AngularFire,
+        FlashMessagesService])
 ], HomeComponent);
 export { HomeComponent };
 //# sourceMappingURL=../../../../../src/app/components/home/home.component.js.map
