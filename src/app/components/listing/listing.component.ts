@@ -8,6 +8,9 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
+  id:any;
+  listing: any;
+  imageUrl:any;
 
   constructor() { }
 
