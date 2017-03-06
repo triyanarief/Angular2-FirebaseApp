@@ -17,6 +17,10 @@ var FirebaseService = (function () {
         this.listings = this.af.database.list('/listings');
         return this.listings;
     };
+    FirebaseService.prototype.getListingDetails = function (id) {
+        this.listing = this.af.database.object('/listings/' + id);
+        return this.listing;
+    };
     return FirebaseService;
 }());
 FirebaseService = __decorate([
