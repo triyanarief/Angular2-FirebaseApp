@@ -8,8 +8,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
+import { Router, ActivatedRoute } from '@angular/router';
 var ListingComponent = (function () {
-    function ListingComponent() {
+    function ListingComponent(firebaseService, router, route) {
+        this.firebaseService = firebaseService;
+        this.router = router;
+        this.route = route;
     }
     ListingComponent.prototype.ngOnInit = function () {
     };
@@ -21,7 +26,9 @@ ListingComponent = __decorate([
         templateUrl: './listing.component.html',
         styleUrls: ['./listing.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [FirebaseService,
+        Router,
+        ActivatedRoute])
 ], ListingComponent);
 export { ListingComponent };
 //# sourceMappingURL=../../../../../src/app/components/listing/listing.component.js.map

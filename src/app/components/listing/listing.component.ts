@@ -12,7 +12,11 @@ export class ListingComponent implements OnInit {
   listing: any;
   imageUrl:any;
 
-  constructor() { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private router:Router,
+    private route:ActivatedRoute
+  ) { }
 
   ngOnInit() {
   }
