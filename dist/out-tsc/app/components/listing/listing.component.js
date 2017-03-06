@@ -17,6 +17,12 @@ var ListingComponent = (function () {
         this.route = route;
     }
     ListingComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.id = this.route.snapshot.params['id'];
+        this.firebaseService.getListingDetails(this.id).subscribe(function (listing) {
+            _this.listing = listing;
+            console.log(listing);
+        });
     };
     return ListingComponent;
 }());
