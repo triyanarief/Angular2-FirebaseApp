@@ -8,10 +8,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
+import { Router } from '@angular/router';
 var AddListingComponent = (function () {
-    function AddListingComponent() {
+    function AddListingComponent(firebaseService, router) {
+        this.firebaseService = firebaseService;
+        this.router = router;
     }
     AddListingComponent.prototype.ngOnInit = function () {
+    };
+    AddListingComponent.prototype.onAddSubmit = function () {
+        var listing = {
+            title: this.title,
+            city: this.title,
+            owner: this.owner,
+            bedrooms: this.bedrooms,
+            price: this.price,
+            type: this.type
+        };
+        this.firebaseService.addListing(listing);
+        this.router.navigate(['listings']);
     };
     return AddListingComponent;
 }());
@@ -21,7 +37,8 @@ AddListingComponent = __decorate([
         templateUrl: './add-listing.component.html',
         styleUrls: ['./add-listing.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [FirebaseService,
+        Router])
 ], AddListingComponent);
 export { AddListingComponent };
 //# sourceMappingURL=../../../../../src/app/components/add-listing/add-listing.component.js.map
