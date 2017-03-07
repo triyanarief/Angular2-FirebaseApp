@@ -9,9 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
+import * as firebase from 'firebase';
 var FirebaseService = (function () {
     function FirebaseService(af) {
         this.af = af;
+        this.folder = 'listingimages';
     }
     FirebaseService.prototype.getListings = function () {
         this.listings = this.af.database.list('/listings');
@@ -20,6 +22,24 @@ var FirebaseService = (function () {
     FirebaseService.prototype.getListingDetails = function (id) {
         this.listing = this.af.database.object('/listings/' + id);
         return this.listing;
+    };
+    FirebaseService.prototype.addListing = function (listing) {
+        var _this = this;
+        var storageRef = firebase.storage().ref();
+        var _loop_1 = function (selectedFile) {
+            var path = "/" + this_1.folder + "/" + selectedFile.name;
+            var iRef = storageRef.child(path);
+            iRef.put(selectedFile).then(function (snapshot) {
+                listing.image = selectedFile.name;
+                listing.path = path;
+                return _this.listings.push(listing);
+            });
+        };
+        var this_1 = this;
+        for (var _i = 0, _a = [document.getElementById('image').files[0]]; _i < _a.length; _i++) {
+            var selectedFile = _a[_i];
+            _loop_1(selectedFile);
+        }
     };
     return FirebaseService;
 }());
