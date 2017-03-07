@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as firebase from 'firebase';
 var ListingComponent = (function () {
     function ListingComponent(firebaseService, router, route) {
         this.firebaseService = firebaseService;
@@ -21,7 +22,13 @@ var ListingComponent = (function () {
         this.id = this.route.snapshot.params['id'];
         this.firebaseService.getListingDetails(this.id).subscribe(function (listing) {
             _this.listing = listing;
-            console.log(listing);
+            var storageRef = firebase.storage().ref();
+            var spaceRef = storageRef.child(listing.path);
+            storageRef.child(listing.path).getDownloadURL().then(function (url) {
+                _this.imageUrl = url;
+            }).catch(function (error) {
+                console.log(error);
+            });
         });
     };
     return ListingComponent;

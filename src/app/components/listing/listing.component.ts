@@ -25,9 +25,15 @@ export class ListingComponent implements OnInit {
 
     this.firebaseService.getListingDetails(this.id).subscribe(listing => {
       this.listing = listing;
-      console.log(listing);
 
-      // @TODO - Storage Ref
+      let storageRef = firebase.storage().ref();
+      let spaceRef = storageRef.child(listing.path);
+      storageRef.child(listing.path).getDownloadURL().then((url) => {
+        // Set image url
+        this.imageUrl = url;
+      }).catch((error) => {
+        console.log(error);
+      });
     });
   }
 
