@@ -27,7 +27,7 @@ export class AddListingComponent implements OnInit {
   onAddSubmit(){
     let listing = {
       title: this.title,
-      city: this.title,
+      city: this.city,
       owner: this.owner,
       bedrooms:this.bedrooms,
       price: this.price,

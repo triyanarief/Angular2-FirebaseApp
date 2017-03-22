@@ -10,42 +10,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import * as firebase from 'firebase';
-var ListingComponent = (function () {
-    function ListingComponent(firebaseService, router, route) {
+var EditListingComponent = (function () {
+    function EditListingComponent(firebaseService, router, route) {
         this.firebaseService = firebaseService;
         this.router = router;
         this.route = route;
     }
-    ListingComponent.prototype.ngOnInit = function () {
+    EditListingComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.id = this.route.snapshot.params['id'];
         this.firebaseService.getListingDetails(this.id).subscribe(function (listing) {
-            _this.listing = listing;
-            var storageRef = firebase.storage().ref();
-            var spaceRef = storageRef.child(_this.listing.path);
-            storageRef.child(_this.listing.path).getDownloadURL().then(function (url) {
-                _this.imageUrl = url;
-            }).catch(function (error) {
-                console.log(error);
-            });
+            _this.title = listing.title;
+            _this.owner = listing.owner;
+            _this.city = listing.city;
+            _this.bedrooms = listing.bedrooms;
+            _this.price = listing.price;
+            _this.type = listing.type;
         });
     };
-    ListingComponent.prototype.onDeleteClick = function () {
-        this.firebaseService.deleteListing(this.id);
+    EditListingComponent.prototype.onEditSubmit = function () {
+        var listing = {
+            title: this.title,
+            owner: this.owner,
+            city: this.city,
+            bedrooms: this.bedrooms,
+            price: this.price,
+            type: this.type
+        };
+        this.firebaseService.updateListing(this.id, listing);
         this.router.navigate(['/listings']);
     };
-    return ListingComponent;
+    return EditListingComponent;
 }());
-ListingComponent = __decorate([
+EditListingComponent = __decorate([
     Component({
-        selector: 'app-listing',
-        templateUrl: './listing.component.html',
-        styleUrls: ['./listing.component.css']
+        selector: 'app-edit-listing',
+        templateUrl: './edit-listing.component.html',
+        styleUrls: ['./edit-listing.component.css']
     }),
     __metadata("design:paramtypes", [FirebaseService,
         Router,
         ActivatedRoute])
-], ListingComponent);
-export { ListingComponent };
-//# sourceMappingURL=../../../../../src/app/components/listing/listing.component.js.map
+], EditListingComponent);
+export { EditListingComponent };
+//# sourceMappingURL=../../../../../src/app/components/edit-listing/edit-listing.component.js.map
